@@ -17,46 +17,77 @@
     </header>
 
     <main class="container">
-      <div class="game-heading">
+      <section id="homeScreen" class="game-screen home-screen">
         <p class="eyebrow">MOBILE FARM OBSTACLE DASH</p>
         <h2>Harvest Rush</h2>
-        <p>Collect the good stuff. Dodge the hay carts. Finish the farm dash.</p>
-      </div>
-      <section class="game-shell">
-        <div class="canvas-panel">
-          <div class="game-canvas-wrap">
-            <canvas id="gameCanvas" width="960" height="540"></canvas>
-            <div class="touch-controls" aria-label="Touch controls">
-              <button class="touch-button touch-up" data-key="ArrowUp" aria-label="Move up">▲</button>
-              <button class="touch-button touch-left" data-key="ArrowLeft" aria-label="Move left">◀</button>
-              <button class="touch-button touch-down" data-key="ArrowDown" aria-label="Move down">▼</button>
-              <button class="touch-button touch-right" data-key="ArrowRight" aria-label="Move right">▶</button>
-            </div>
+        <p class="screen-copy">A bright little farm world where every harvest is a race.</p>
+        <img class="home-hero" src="assets/hero-transparent.png" alt="Harvest Rush farmer hero" />
+        <div class="home-badge">SEASON 01 · SUNSPROUT VALLEY</div>
+        <button id="playBtn" class="primary-button">PLAY NOW</button>
+        <p class="tiny-copy">Touch controls · 45 second rounds · Collect and dodge</p>
+      </section>
+
+      <section id="lobbyScreen" class="game-screen lobby-screen hidden">
+        <div class="lobby-topline">
+          <div>
+            <p class="eyebrow">FARM DASH LOBBY</p>
+            <h2>Ready to harvest?</h2>
+          </div>
+          <button id="backBtn" class="icon-button" aria-label="Back to home">×</button>
+        </div>
+        <div class="lobby-card">
+          <img src="assets/hero-transparent.png" alt="Selected farmer" />
+          <div>
+            <p class="eyebrow">YOUR FARMER</p>
+            <h3>Sprout Scout</h3>
+            <p>Fast feet, big harvest energy.</p>
           </div>
         </div>
+        <div class="mission-card">
+          <span class="mission-icon">✦</span>
+          <div><strong>Harvest Run</strong><small>Collect produce and dodge hay carts</small></div>
+          <span class="mission-reward">+10</span>
+        </div>
+        <button id="startBtn" class="primary-button">START FARMING</button>
+      </section>
 
-        <aside class="side-panel">
-          <div class="hud">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="timer">Time: <span id="timer">45</span>s</div>
+      <section id="playScreen" class="game-screen play-screen hidden">
+        <div class="game-shell">
+          <div class="canvas-panel">
+            <div class="play-topbar">
+              <button id="lobbyBtn" class="icon-button" aria-label="Return to lobby">‹</button>
+              <span>HARVEST RUN</span>
+              <span class="heart">♥</span>
+            </div>
+            <div class="game-canvas-wrap">
+              <canvas id="gameCanvas" width="960" height="540"></canvas>
+              <div class="touch-controls" aria-label="Touch controls">
+                <button class="touch-button touch-up" data-key="ArrowUp" aria-label="Move up">▲</button>
+                <button class="touch-button touch-left" data-key="ArrowLeft" aria-label="Move left">◀</button>
+                <button class="touch-button touch-down" data-key="ArrowDown" aria-label="Move down">▼</button>
+                <button class="touch-button touch-right" data-key="ArrowRight" aria-label="Move right">▶</button>
+              </div>
+            </div>
           </div>
-
-          <div id="status" class="status">Race through the farm, dodge the carts, and collect the most produce!</div>
-
-          <div class="controls">
-            <button id="startBtn">Start Farming</button>
-          </div>
-
-          <div class="legend">
-            <h3>How to Play</h3>
-            <ul>
-              <li>Use the on-screen pad or arrow keys to move.</li>
-              <li>Collect produce and tools for 10 points each.</li>
-              <li>Dodge rolling hay carts; they cost 3 seconds.</li>
-              <li>Beat the 45-second farm dash.</li>
-            </ul>
-          </div>
-        </aside>
+          <aside class="side-panel">
+            <div class="hud">
+              <div class="score">Score: <span id="score">0</span></div>
+              <div class="timer">Time: <span id="timer">45</span>s</div>
+            </div>
+            <div id="status" class="status">Collect produce and dodge the hay carts!</div>
+            <div class="controls">
+              <button id="restartBtn" class="secondary-button">RESTART ROUND</button>
+            </div>
+            <div class="legend">
+              <h3>How to Play</h3>
+              <ul>
+                <li>Use the on-screen pad or arrow keys.</li>
+                <li>Collect produce and tools for 10 points.</li>
+                <li>Hay carts cost 3 seconds.</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section class="asset-showcase">

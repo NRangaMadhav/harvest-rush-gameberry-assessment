@@ -4,6 +4,13 @@ const scoreEl = document.getElementById('score');
 const timerEl = document.getElementById('timer');
 const statusEl = document.getElementById('status');
 const startBtn = document.getElementById('startBtn');
+const restartBtn = document.getElementById('restartBtn');
+const playBtn = document.getElementById('playBtn');
+const backBtn = document.getElementById('backBtn');
+const lobbyBtn = document.getElementById('lobbyBtn');
+const homeScreen = document.getElementById('homeScreen');
+const lobbyScreen = document.getElementById('lobbyScreen');
+const playScreen = document.getElementById('playScreen');
 const touchButtons = document.querySelectorAll('.touch-button');
 
 const groundY = canvas.height - 72;
@@ -52,7 +59,22 @@ function resetGame() {
 function startGame() {
   resetGame();
   gameRunning = true;
-  startBtn.textContent = 'Restart Round';
+  lobbyScreen.classList.add('hidden');
+  playScreen.classList.remove('hidden');
+}
+
+function showLobby() {
+  gameRunning = false;
+  homeScreen.classList.add('hidden');
+  playScreen.classList.add('hidden');
+  lobbyScreen.classList.remove('hidden');
+}
+
+function showHome() {
+  gameRunning = false;
+  lobbyScreen.classList.add('hidden');
+  playScreen.classList.add('hidden');
+  homeScreen.classList.remove('hidden');
 }
 
 function clamp(value, min, max) {
@@ -301,7 +323,11 @@ window.addEventListener('keyup', (event) => {
   keys[event.key.toLowerCase()] = false;
 });
 
+playBtn.addEventListener('click', showLobby);
+backBtn.addEventListener('click', showHome);
+lobbyBtn.addEventListener('click', showLobby);
 startBtn.addEventListener('click', startGame);
+restartBtn.addEventListener('click', startGame);
 touchButtons.forEach((button) => {
   const key = button.dataset.key;
   const press = (event) => {
