@@ -1,6 +1,6 @@
 # Harvest Rush
 
-Harvest Rush is a small farming-based casual game prototype created for the
+Harvest Rush: Farm Dash is a small farming-based casual mobile game prototype created for the
 GameBerry Labs Gen AI Designer assessment.
 
 ## Run the game
@@ -14,9 +14,11 @@ python -m http.server 8000
 
 Then open <http://localhost:8000/> in a browser.
 
-Click **Start Farming**, then use the arrow keys or `WASD` to move the farmer
-over crops and tools. Each collected item is worth 10 points and each round
-lasts 45 seconds.
+Click **Start Farming**, then use the on-screen directional pad on mobile or
+the arrow keys/`WASD` on desktop to move the farmer over crops and tools.
+Rolling hay carts act as simple obstacle-course hazards: touching one costs
+three seconds. Each collected item is worth 10 points and each round lasts 45
+seconds.
 
 ## Project contents
 
@@ -54,8 +56,20 @@ collectible presentation into one composition. The browser prototype adds the
 interactive layer: movement, spawning collectibles, collision pickup, score
 feedback, and a timed round.
 
-For a production version, I would add touch controls, sound effects,
-character animation, multiple farming levels, and a proper layered Photoshop
+The game is delivered as a mobile-first web game rather than an APK because
+the assignment asks for a game-asset set and this format can be opened directly
+on a phone without installing a build toolchain. It can be wrapped as an
+Android APK later with Capacitor or a WebView shell; the current layout and
+touch controls are already designed for that path.
+
+The included `manifest.webmanifest` also lets a reviewer use the browser's
+**Add to Home Screen** option for an app-like mobile preview. A signed native
+APK is not included because this workspace does not have the Android SDK or
+Gradle toolchain installed; the repository remains ready to wrap with
+Capacitor when those tools are available.
+
+For a production version, I would add sound effects, character animation,
+multiple farming levels, online leaderboards, and a proper layered Photoshop
 file with named groups. The editable SVG source files and the Python export
 script are included as an organized source workflow for this assessment.
 
@@ -67,6 +81,7 @@ Submit the project folder as a ZIP, or submit a repository link containing:
 2. The complete `assets/` folder
 3. `README.md` and `requirements.txt`
 4. The editable SVG source files
+5. `manifest.webmanifest` for the mobile install-style preview
 
 When sending it by email, include the run instructions and the URL
 `http://localhost:8000/` as the local preview command.

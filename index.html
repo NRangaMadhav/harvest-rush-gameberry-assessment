@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harvest Rush</title>
+    <title>Harvest Rush: Farm Dash</title>
+    <meta name="theme-color" content="#b21a5d" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,10 +17,21 @@
     </header>
 
     <main class="container">
+      <div class="game-heading">
+        <p class="eyebrow">MOBILE FARM OBSTACLE DASH</p>
+        <h2>Harvest Rush</h2>
+        <p>Collect the good stuff. Dodge the hay carts. Finish the farm dash.</p>
+      </div>
       <section class="game-shell">
         <div class="canvas-panel">
           <div class="game-canvas-wrap">
             <canvas id="gameCanvas" width="960" height="540"></canvas>
+            <div class="touch-controls" aria-label="Touch controls">
+              <button class="touch-button touch-up" data-key="ArrowUp" aria-label="Move up">▲</button>
+              <button class="touch-button touch-left" data-key="ArrowLeft" aria-label="Move left">◀</button>
+              <button class="touch-button touch-down" data-key="ArrowDown" aria-label="Move down">▼</button>
+              <button class="touch-button touch-right" data-key="ArrowRight" aria-label="Move right">▶</button>
+            </div>
           </div>
         </div>
 
@@ -28,7 +41,7 @@
             <div class="timer">Time: <span id="timer">45</span>s</div>
           </div>
 
-          <div id="status" class="status">Collect crops and tools before the timer ends!</div>
+          <div id="status" class="status">Race through the farm, dodge the carts, and collect the most produce!</div>
 
           <div class="controls">
             <button id="startBtn">Start Farming</button>
@@ -37,16 +50,22 @@
           <div class="legend">
             <h3>How to Play</h3>
             <ul>
-              <li>Use arrow keys or A/D to move.</li>
-              <li>Move over items to harvest them.</li>
-              <li>Score 10 points for each collectible.</li>
-              <li>Hit start to play a fresh round.</li>
+              <li>Use the on-screen pad or arrow keys to move.</li>
+              <li>Collect produce and tools for 10 points each.</li>
+              <li>Dodge rolling hay carts; they cost 3 seconds.</li>
+              <li>Beat the 45-second farm dash.</li>
             </ul>
           </div>
         </aside>
       </section>
 
-      <section class="asset-grid">
+      <section class="asset-showcase">
+        <div class="showcase-heading">
+          <p class="eyebrow">ASSESSMENT ASSET PACK</p>
+          <h2>Farm World Collection</h2>
+          <p>The four required visual assets, shown separately from the playable screen.</p>
+        </div>
+        <div class="asset-grid">
         <article class="asset-card">
           <h4>Hero Character</h4>
           <img src="assets/hero.png" alt="Farming hero character" />
@@ -63,6 +82,7 @@
           <h4>Collectibles Set</h4>
           <img src="assets/items.png" alt="Collectible set" />
         </article>
+        </div>
       </section>
     </main>
 

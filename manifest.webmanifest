@@ -1,0 +1,17 @@
+{
+  "name": "Harvest Rush: Farm Dash",
+  "short_name": "Harvest Rush",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f0",
+  "theme_color": "#b21a5d",
+  "description": "A touch-friendly farming obstacle dash game.",
+  "icons": [
+    {
+      "src": "assets/hero.png",
+      "sizes": "800x800",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

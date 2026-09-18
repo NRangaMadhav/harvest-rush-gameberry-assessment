@@ -4,6 +4,7 @@ const scoreEl = document.getElementById('score');
 const timerEl = document.getElementById('timer');
 const statusEl = document.getElementById('status');
 const startBtn = document.getElementById('startBtn');
+const touchButtons = document.querySelectorAll('.touch-button');
 
 const groundY = canvas.height - 72;
 let gameRunning = false;
@@ -13,6 +14,7 @@ let lastTime = 0;
 let spawnTimer = 0;
 let collectibles = [];
 let clouds = [];
+let hayCarts = [];
 let keys = {};
 let player = {
   x: 130,
@@ -30,6 +32,10 @@ function resetGame() {
   score = 0;
   timeLeft = 45;
   collectibles = [];
+  hayCarts = [
+    { x: 820, y: 335, speed: 1.7, radius: 27, hitCooldown: 0 },
+    { x: 430, y: 210, speed: -1.35, radius: 27, hitCooldown: 0 }
+  ];
   clouds = [
     { x: 150, y: 70, w: 90, h: 36 },
     { x: 480, y: 110, w: 120, h: 38 },
@@ -40,7 +46,7 @@ function resetGame() {
   player.facing = 1;
   scoreEl.textContent = '0';
   timerEl.textContent = '45';
-  statusEl.textContent = 'Collect crops and tools before the timer ends!';
+  statusEl.textContent = 'Race through the farm, dodge the carts, and collect the most produce!';
 }
 
 function startGame() {
@@ -155,6 +161,25 @@ function drawCollectible(item) {
   ctx.restore();
 }
 
+function drawHayCart(cart) {
+  ctx.save();
+  ctx.translate(cart.x, cart.y);
+  ctx.fillStyle = '#bd7a39';
+  ctx.fillRect(-24, -18, 48, 34);
+  ctx.fillStyle = '#f4c25e';
+  ctx.beginPath();
+  ctx.arc(0, -4, 19, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#8b552c';
+  ctx.fillRect(-5, -22, 10, 36);
+  ctx.fillStyle = '#4d5b35';
+  ctx.beginPath();
+  ctx.arc(-16, 20, 8, 0, Math.PI * 2);
+  ctx.arc(16, 20, 8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
 function drawPlayer() {
   const { x, y, width, height, facing } = player;
   ctx.save();
@@ -193,6 +218,21 @@ function checkCollection() {
   });
 }
 
+function checkHayCarts() {
+  hayCarts.forEach((cart) => {
+    cart.hitCooldown = Math.max(0, cart.hitCooldown - 1);
+    const distance = Math.hypot(
+      cart.x - (player.x + player.width / 2),
+      cart.y - (player.y + player.height / 2)
+    );
+    if (distance < cart.radius + 24 && cart.hitCooldown === 0) {
+      timeLeft = Math.max(0, timeLeft - 3);
+      cart.hitCooldown = 45;
+      statusEl.textContent = 'A hay cart bumped you! Keep moving!';
+    }
+  });
+}
+
 function update(dt) {
   if (!gameRunning) return;
 
@@ -213,6 +253,11 @@ function update(dt) {
 
   updatePlayer();
   checkCollection();
+  checkHayCarts();
+  hayCarts.forEach((cart) => {
+    cart.x += cart.speed;
+    if (cart.x < 80 || cart.x > canvas.width - 80) cart.speed *= -1;
+  });
   clouds.forEach((cloud) => {
     cloud.x -= 0.2;
     if (cloud.x < -150) cloud.x = canvas.width + 80;
@@ -221,6 +266,7 @@ function update(dt) {
 
 function render() {
   drawBackground();
+  hayCarts.forEach((cart) => drawHayCart(cart));
   collectibles.forEach((item) => drawCollectible(item));
   drawPlayer();
 
@@ -256,5 +302,20 @@ window.addEventListener('keyup', (event) => {
 });
 
 startBtn.addEventListener('click', startGame);
+touchButtons.forEach((button) => {
+  const key = button.dataset.key;
+  const press = (event) => {
+    event.preventDefault();
+    keys[key] = true;
+  };
+  const release = (event) => {
+    event.preventDefault();
+    keys[key] = false;
+  };
+  button.addEventListener('pointerdown', press);
+  button.addEventListener('pointerup', release);
+  button.addEventListener('pointercancel', release);
+  button.addEventListener('pointerleave', release);
+});
 resetGame();
 requestAnimationFrame(gameLoop);
