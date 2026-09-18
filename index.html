@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harvest Rush</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container brand">
+        <div class="logo-round"></div>
+        <h1>GAMEBERRY <span>LABS</span></h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="game-shell">
+        <div class="canvas-panel">
+          <div class="game-canvas-wrap">
+            <canvas id="gameCanvas" width="960" height="540"></canvas>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="hud">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="timer">Time: <span id="timer">45</span>s</div>
+          </div>
+
+          <div id="status" class="status">Collect crops and tools before the timer ends!</div>
+
+          <div class="controls">
+            <button id="startBtn">Start Farming</button>
+          </div>
+
+          <div class="legend">
+            <h3>How to Play</h3>
+            <ul>
+              <li>Use arrow keys or A/D to move.</li>
+              <li>Move over items to harvest them.</li>
+              <li>Score 10 points for each collectible.</li>
+              <li>Hit start to play a fresh round.</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="asset-grid">
+        <article class="asset-card">
+          <h4>Hero Character</h4>
+          <img src="assets/hero.png" alt="Farming hero character" />
+        </article>
+        <article class="asset-card">
+          <h4>Gameplay Screen</h4>
+          <img src="assets/gameplay.png" alt="Gameplay scene" />
+        </article>
+        <article class="asset-card">
+          <h4>Farm World Background</h4>
+          <img src="assets/background.png" alt="Farm background" />
+        </article>
+        <article class="asset-card">
+          <h4>Collectibles Set</h4>
+          <img src="assets/items.png" alt="Collectible set" />
+        </article>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
