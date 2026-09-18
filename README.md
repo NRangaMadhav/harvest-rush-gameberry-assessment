@@ -14,11 +14,14 @@ python -m http.server 8000
 
 Then open <http://localhost:8000/> in a browser.
 
-Click **Start Farming**, then use the on-screen directional pad on mobile or
+Click **Start Farming**, then drag the bottom-right joystick on mobile or use
 the arrow keys/`WASD` on desktop to move the farmer over crops and tools.
 Rolling hay carts act as simple obstacle-course hazards: touching one costs
 three seconds. Each collected item is worth 10 points and each round lasts 45
 seconds.
+
+During gameplay, the fullscreen button in the top-right expands the game
+screen for a more natural phone play experience.
 
 ## Project contents
 

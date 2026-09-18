@@ -305,38 +305,63 @@ body {
 }
 
 .touch-controls {
-  display: none;
   position: absolute;
-  left: 16px;
-  bottom: 16px;
-  width: 132px;
-  height: 132px;
+  right: 18px;
+  bottom: 18px;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: rgba(29, 108, 53, 0.36);
+  border: 2px solid rgba(255,255,255,0.72);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
   touch-action: none;
 }
 
-.touch-button {
+.joystick {
   position: absolute;
-  width: 42px;
-  height: 42px;
+  right: 18px;
+  bottom: 18px;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: rgba(29, 108, 53, 0.36);
+  border: 2px solid rgba(255,255,255,0.72);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  touch-action: none;
+  z-index: 3;
+}
+
+.joystick-knob {
+  position: absolute;
+  left: 31px;
+  top: 31px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #47af56;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.game-actions {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 3;
+}
+
+.game-action {
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 1px solid rgba(255,255,255,0.8);
-  border-radius: 13px;
-  background: rgba(29, 108, 53, 0.8);
-  color: white;
+  border-radius: 14px;
+  background: rgba(29, 108, 53, 0.76);
+  color: #fff;
   box-shadow: 0 5px 12px rgba(0,0,0,0.18);
-  font-size: 1rem;
-  -webkit-tap-highlight-color: transparent;
+  font-size: 1.4rem;
 }
-
-.touch-button:active {
-  transform: scale(0.94);
-  background: rgba(178, 26, 93, 0.9);
-}
-
-.touch-up { left: 45px; top: 0; }
-.touch-left { left: 0; top: 45px; }
-.touch-down { left: 45px; top: 45px; }
-.touch-right { left: 90px; top: 45px; }
 
 canvas {
   width: 100%;
@@ -479,10 +504,6 @@ button:hover { filter: brightness(1.02); }
 
   .canvas-panel {
     padding: 8px;
-  }
-
-  .touch-controls {
-    display: block;
   }
 
   .side-panel {

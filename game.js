@@ -11,7 +11,9 @@ const lobbyBtn = document.getElementById('lobbyBtn');
 const homeScreen = document.getElementById('homeScreen');
 const lobbyScreen = document.getElementById('lobbyScreen');
 const playScreen = document.getElementById('playScreen');
-const touchButtons = document.querySelectorAll('.touch-button');
+const joystick = document.getElementById('joystick');
+const joystickKnob = document.getElementById('joystickKnob');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
 
 const groundY = canvas.height - 72;
 let gameRunning = false;
@@ -23,6 +25,8 @@ let collectibles = [];
 let clouds = [];
 let hayCarts = [];
 let keys = {};
+let joystickVector = { x: 0, y: 0 };
+let joystickPointerId = null;
 let player = {
   x: 130,
   y: groundY - 80,
@@ -98,14 +102,18 @@ function spawnCollectible() {
 
 function updatePlayer() {
   let moveX = 0;
+  let moveY = 0;
   if (keys['ArrowLeft'] || keys['a']) moveX -= 1;
   if (keys['ArrowRight'] || keys['d']) moveX += 1;
+  if (keys['ArrowUp'] || keys['w']) moveY -= 1;
+  if (keys['ArrowDown'] || keys['s']) moveY += 1;
+  moveX += joystickVector.x;
+  moveY += joystickVector.y;
   if (moveX !== 0) player.facing = moveX > 0 ? 1 : -1;
   player.x += moveX * player.speed;
   player.x = clamp(player.x, 20, canvas.width - 80);
+  player.y += moveY * player.speed;
   player.y = clamp(player.y, 110, groundY - 70);
-  if (keys['ArrowUp'] || keys['w']) player.y -= 4;
-  if (keys['ArrowDown'] || keys['s']) player.y += 4;
 }
 
 function drawCloud(x, y, w, h) {
@@ -207,21 +215,59 @@ function drawPlayer() {
   ctx.save();
   ctx.translate(x + width / 2, y + height / 2);
   ctx.scale(facing, 1);
-
-  ctx.fillStyle = '#52a052';
-  ctx.fillRect(-18, -32, 36, 44);
-  ctx.fillStyle = '#f2d2a8';
-  ctx.fillRect(-16, -56, 32, 26);
-  ctx.fillStyle = '#2d4d38';
-  ctx.fillRect(-16, -62, 10, 10);
-  ctx.fillRect(6, -62, 10, 10);
-  ctx.fillStyle = '#f4d37a';
-  ctx.fillRect(-18, -8, 12, 36);
-  ctx.fillRect(6, -8, 12, 36);
-  ctx.fillStyle = '#fdc04d';
-  ctx.fillRect(-24, 26, 18, 14);
-  ctx.fillRect(6, 26, 18, 14);
-
+  ctx.fillStyle = 'rgba(39, 104, 57, 0.25)';
+  ctx.beginPath();
+  ctx.ellipse(0, 43, 30, 9, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#f8c957';
+  ctx.beginPath();
+  ctx.roundRect(-23, -36, 46, 48, 14);
+  ctx.fill();
+  ctx.fillStyle = '#3d9b55';
+  ctx.beginPath();
+  ctx.roundRect(-18, -31, 36, 32, 11);
+  ctx.fill();
+  ctx.fillStyle = '#f3cba6';
+  ctx.beginPath();
+  ctx.arc(0, -52, 23, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#315c3b';
+  ctx.beginPath();
+  ctx.arc(0, -59, 25, Math.PI, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#f6b94e';
+  ctx.beginPath();
+  ctx.ellipse(0, -77, 32, 8, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#54a85b';
+  ctx.beginPath();
+  ctx.ellipse(18, -80, 14, 7, -0.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#252525';
+  ctx.beginPath();
+  ctx.arc(-8, -51, 3.5, 0, Math.PI * 2);
+  ctx.arc(8, -51, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#c77571';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(0, -45, 8, 0.2, Math.PI - 0.2);
+  ctx.stroke();
+  ctx.fillStyle = '#f3cba6';
+  ctx.beginPath();
+  ctx.roundRect(-34, -22, 14, 36, 7);
+  ctx.roundRect(20, -22, 14, 36, 7);
+  ctx.fill();
+  ctx.fillStyle = '#f3a83f';
+  ctx.beginPath();
+  ctx.roundRect(-19, 8, 14, 35, 6);
+  ctx.roundRect(5, 8, 14, 35, 6);
+  ctx.fill();
+  ctx.fillStyle = '#81502f';
+  ctx.beginPath();
+  ctx.ellipse(-12, 44, 16, 7, 0, 0, Math.PI * 2);
+  ctx.ellipse(12, 44, 16, 7, 0, 0, Math.PI * 2);
+  ctx.fill();
   ctx.restore();
 }
 
@@ -328,20 +374,53 @@ backBtn.addEventListener('click', showHome);
 lobbyBtn.addEventListener('click', showLobby);
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', startGame);
-touchButtons.forEach((button) => {
-  const key = button.dataset.key;
-  const press = (event) => {
-    event.preventDefault();
-    keys[key] = true;
+function updateJoystick(event) {
+  const rect = joystick.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const maxDistance = rect.width * 0.3;
+  const dx = event.clientX - centerX;
+  const dy = event.clientY - centerY;
+  const distance = Math.hypot(dx, dy);
+  const scale = distance > maxDistance ? maxDistance / distance : 1;
+  joystickVector = {
+    x: (dx * scale) / maxDistance,
+    y: (dy * scale) / maxDistance
   };
-  const release = (event) => {
-    event.preventDefault();
-    keys[key] = false;
-  };
-  button.addEventListener('pointerdown', press);
-  button.addEventListener('pointerup', release);
-  button.addEventListener('pointercancel', release);
-  button.addEventListener('pointerleave', release);
+  joystickKnob.style.transform = `translate(${joystickVector.x * maxDistance}px, ${joystickVector.y * maxDistance}px)`;
+}
+
+function resetJoystick(event) {
+  if (event.pointerId !== joystickPointerId) return;
+  joystickPointerId = null;
+  joystickVector = { x: 0, y: 0 };
+  joystickKnob.style.transform = 'translate(0, 0)';
+}
+
+joystick.addEventListener('pointerdown', (event) => {
+  event.preventDefault();
+  joystickPointerId = event.pointerId;
+  joystick.setPointerCapture(event.pointerId);
+  updateJoystick(event);
+});
+joystick.addEventListener('pointermove', (event) => {
+  if (event.pointerId === joystickPointerId) updateJoystick(event);
+});
+joystick.addEventListener('pointerup', resetJoystick);
+joystick.addEventListener('pointercancel', resetJoystick);
+
+fullscreenBtn.addEventListener('click', async () => {
+  try {
+    if (!document.fullscreenElement) {
+      await playScreen.requestFullscreen();
+      fullscreenBtn.textContent = '×';
+    } else {
+      await document.exitFullscreen();
+      fullscreenBtn.textContent = '⛶';
+    }
+  } catch (error) {
+    statusEl.textContent = 'Fullscreen is not available in this browser.';
+  }
 });
 resetGame();
 requestAnimationFrame(gameLoop);

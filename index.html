@@ -61,11 +61,11 @@
             </div>
             <div class="game-canvas-wrap">
               <canvas id="gameCanvas" width="960" height="540"></canvas>
-              <div class="touch-controls" aria-label="Touch controls">
-                <button class="touch-button touch-up" data-key="ArrowUp" aria-label="Move up">▲</button>
-                <button class="touch-button touch-left" data-key="ArrowLeft" aria-label="Move left">◀</button>
-                <button class="touch-button touch-down" data-key="ArrowDown" aria-label="Move down">▼</button>
-                <button class="touch-button touch-right" data-key="ArrowRight" aria-label="Move right">▶</button>
+              <div class="game-actions">
+                <button id="fullscreenBtn" class="game-action" aria-label="Toggle fullscreen">⛶</button>
+              </div>
+              <div id="joystick" class="joystick" aria-label="Drag joystick to move">
+                <div id="joystickKnob" class="joystick-knob"></div>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
             <div class="legend">
               <h3>How to Play</h3>
               <ul>
-                <li>Use the on-screen pad or arrow keys.</li>
+                <li>Drag the joystick to move on mobile.</li>
                 <li>Collect produce and tools for 10 points.</li>
                 <li>Hay carts cost 3 seconds.</li>
               </ul>
