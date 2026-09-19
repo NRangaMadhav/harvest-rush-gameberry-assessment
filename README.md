@@ -29,6 +29,8 @@ screen for a more natural phone play experience.
 - `style.css` - responsive visual styling
 - `game.js` - game loop, movement, collectibles, scoring, and timer
 - `assets/` - hero, gameplay, environment, and collectible PNG assets
+- `assets/hero-variant.png` - alternate blue-apron hero outfit/pose used in the lobby
+- `assets/carrot.png`, `tomato.png`, `hammer.png`, `watering-can.png` - standalone transparent collectible exports for Photopea
 - `presentation-sheet.png` - one-page presentation of all four required assets
 - `hero-before-after.png` - cleanup comparison for the hero asset
 - `PROCESS-NOTES.md` - assessment process and design rationale

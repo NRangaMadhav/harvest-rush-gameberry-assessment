@@ -12,6 +12,8 @@ blues, and a pink accent for GameBerry-style energy.
 
 1. **Hero / variant:** Sprout Scout is the farmer hero. The hero is reused in
    the home screen and lobby so the character has a clear identity before play.
+   The blue-apron variant adds a watering-can pose for the required outfit/pose
+   variation. Both are exported as transparent PNGs for Photopea compositing.
 2. **Gameplay / lobby:** The gameplay composition shows the hero, farm world,
    inventory panel, and UI hierarchy. The live lobby screen then places the hero
    and mission card in the order a mobile game needs.

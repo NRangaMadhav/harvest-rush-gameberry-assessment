@@ -46,11 +46,24 @@ def create_presentation_sheet():
         x1, y1, x2, y2 = box
         draw.rounded_rectangle(box, radius=24, fill="white", outline="#d9e7d0", width=3)
         draw.text((x1 + 22, y1 + 18), label, fill="#1d6c35", font=font(23, True))
-        image = Image.open(path).convert("RGBA")
-        image.thumbnail((x2 - x1 - 40, y2 - y1 - 80))
-        ix = x1 + (x2 - x1 - image.width) // 2
-        iy = y1 + 64 + (y2 - y1 - 80 - image.height) // 2
-        sheet.paste(image, (ix, iy), image)
+        if label.startswith("01"):
+            images = [
+                Image.open(ASSETS / "hero-transparent.png").convert("RGBA"),
+                Image.open(ASSETS / "hero-variant.png").convert("RGBA"),
+            ]
+            for image_index, image in enumerate(images):
+                image.thumbnail((260, y2 - y1 - 100))
+                ix = x1 + 85 + image_index * 285
+                iy = y1 + 72 + (y2 - y1 - 90 - image.height) // 2
+                sheet.paste(image, (ix, iy), image)
+            draw.text((x1 + 120, y2 - 42), "BASE HERO", fill="#5d5d5d", font=font(16, True))
+            draw.text((x1 + 405, y2 - 42), "BLUE APRON VARIANT", fill="#5d5d5d", font=font(16, True))
+        else:
+            image = Image.open(path).convert("RGBA")
+            image.thumbnail((x2 - x1 - 40, y2 - y1 - 80))
+            ix = x1 + (x2 - x1 - image.width) // 2
+            iy = y1 + 64 + (y2 - y1 - 80 - image.height) // 2
+            sheet.paste(image, (ix, iy), image)
 
     sheet.save(ROOT / "presentation-sheet.png")
 
