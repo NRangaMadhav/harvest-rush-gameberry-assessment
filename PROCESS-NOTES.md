@@ -38,9 +38,14 @@ silhouette, and exported a transparent `assets/hero-transparent.png` for the
 home screen and lobby. The comparison is included in `hero-before-after.png`.
 The presentation sheet is `presentation-sheet.png`.
 
+The layered asset file was prepared in Photopea, a Photoshop-compatible browser
+editor. The hero was cleaned by removing the pale background, preserving the
+character silhouette, applying colour adjustments, and adding a soft shadow.
+The document was organized into named groups for the hero, gameplay lobby,
+farm background, collectibles, and the before/after comparison, then saved as
+`Harvest-Rush-Layered.psd`.
+
 ## What I would improve
 
 For production, I would add sprite animation, sound, haptics, multiple farm
 levels, touch swipe movement, a proper save system, and a native Android build.
-I would also create the final layered Photoshop document from the named art
-groups before delivery to a production art team.

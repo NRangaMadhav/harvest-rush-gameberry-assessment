@@ -34,6 +34,7 @@ screen for a more natural phone play experience.
 - `presentation-sheet.png` - one-page presentation of all four required assets
 - `hero-before-after.png` - cleanup comparison for the hero asset
 - `PROCESS-NOTES.md` - assessment process and design rationale
+- `Harvest-Rush-Layered.psd` - layered Photopea/Photoshop-compatible submission file
 - `generate_final_assets.py` - optional PNG regeneration script
 - `requirements.txt` - Python dependency for the optional asset-generation script
 
@@ -71,10 +72,9 @@ layout and touch controls are already designed for that path.
 
 The included `manifest.webmanifest` lets a reviewer use the browser's
 **Add to Home Screen** option for an app-like mobile preview. A signed native
-APK and Photoshop PSD are not included because this workspace does not have
-the Android SDK, Gradle, or Photoshop toolchain installed. The repository
-includes named workflow notes, transparent PNG exports, and the before/after
-comparison instead of claiming unavailable source files were created.
+APK is not included because this workspace does not have the Android SDK,
+Gradle, or a native mobile build toolchain installed. The layered PSD is
+included separately as the editable asset submission file.
 
 For a production version, I would add sound effects, character animation,
 multiple farming levels, online leaderboards, and a proper layered Photoshop
@@ -88,8 +88,9 @@ Submit the project folder as a ZIP, or submit a repository link containing:
 1. `index.html`, `style.css`, and `game.js`
 2. The complete `assets/` folder, including the transparent hero export
 3. `presentation-sheet.png` and `hero-before-after.png`
-4. `PROCESS-NOTES.md`, `README.md`, and `requirements.txt`
-5. `manifest.webmanifest` for the mobile install-style preview
+4. `Harvest-Rush-Layered.psd`
+5. `PROCESS-NOTES.md`, `README.md`, and `requirements.txt`
+6. `manifest.webmanifest` for the mobile install-style preview
 
 ## Recommended submission order
 
@@ -101,10 +102,9 @@ When presenting the work, show the playable flow first:
 4. Presentation sheet containing the four required asset categories
 5. Before/after hero cleanup and the process notes
 
-For the strict assessment requirement of a layered PSD, import the final PNG
-assets from `assets/` into Photopea, place each asset in its named group, and
-save the final document as `Harvest-Rush-Layered.psd` before sending. The
-repository deliberately does not include a fabricated PSD.
+The final `Harvest-Rush-Layered.psd` was prepared in Photopea with named
+groups for the hero, gameplay lobby, farm background, collectibles, and
+before/after cleanup comparison.
 
 When sending it by email, include the run instructions and the URL
 `http://localhost:8000/` as the local preview command.
