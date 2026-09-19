@@ -34,7 +34,6 @@ screen for a more natural phone play experience.
 - `presentation-sheet.png` - one-page presentation of all four required assets
 - `hero-before-after.png` - cleanup comparison for the hero asset
 - `PROCESS-NOTES.md` - assessment process and design rationale
-- `*.svg` - editable vector source versions of the illustrated assets
 - `generate_final_assets.py` - optional PNG regeneration script
 - `requirements.txt` - Python dependency for the optional asset-generation script
 
@@ -74,13 +73,13 @@ The included `manifest.webmanifest` lets a reviewer use the browser's
 **Add to Home Screen** option for an app-like mobile preview. A signed native
 APK and Photoshop PSD are not included because this workspace does not have
 the Android SDK, Gradle, or Photoshop toolchain installed. The repository
-includes editable SVG source, named workflow notes, transparent PNG exports,
-and the before/after comparison instead of claiming those files were created.
+includes named workflow notes, transparent PNG exports, and the before/after
+comparison instead of claiming unavailable source files were created.
 
 For a production version, I would add sound effects, character animation,
 multiple farming levels, online leaderboards, and a proper layered Photoshop
-file with named groups. The editable SVG source files and the Python export
-script are included as an organized source workflow for this assessment.
+file with named groups. The Python export script and final PNG source assets
+are included as an organized source workflow for this assessment.
 
 ## Submission checklist
 
@@ -90,8 +89,7 @@ Submit the project folder as a ZIP, or submit a repository link containing:
 2. The complete `assets/` folder, including the transparent hero export
 3. `presentation-sheet.png` and `hero-before-after.png`
 4. `PROCESS-NOTES.md`, `README.md`, and `requirements.txt`
-5. The editable SVG source files
-6. `manifest.webmanifest` for the mobile install-style preview
+5. `manifest.webmanifest` for the mobile install-style preview
 
 ## Recommended submission order
 
@@ -103,8 +101,8 @@ When presenting the work, show the playable flow first:
 4. Presentation sheet containing the four required asset categories
 5. Before/after hero cleanup and the process notes
 
-For the strict assessment requirement of a layered PSD, open the editable SVG
-sources in Photoshop, place each named art component in its own group, and
+For the strict assessment requirement of a layered PSD, import the final PNG
+assets from `assets/` into Photopea, place each asset in its named group, and
 save the final document as `Harvest-Rush-Layered.psd` before sending. The
 repository deliberately does not include a fabricated PSD.
 
