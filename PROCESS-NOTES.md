@@ -1,51 +1,52 @@
-# Harvest Rush — Process Notes
+# Harvest Rush — Process Note
 
-## Concept
+## Concept and visual direction
 
-Harvest Rush is a friendly, mobile-first farming obstacle dash. The player
-controls Sprout Scout through SunSprout Valley, collects produce and tools, and
-avoids rolling hay carts before the 45-second round ends. The visual direction
-is deliberately bright and readable: leafy greens, warm crop yellows, soft sky
-blues, and a pink accent for GameBerry-style energy.
+Harvest Rush is a farming-based casual mobile game prototype set in
+SunSprout Valley. The player controls Sprout Scout, collects produce and tools,
+and avoids rolling hay carts during a 45-second farm dash. My design direction
+was: **“A cheerful, rounded mobile farming game with a friendly smiling farmer,
+soft blue sky, layered green hills, warm yellow crops, simple readable shapes,
+and energetic pink accents.”** This prompt/brief guided the hero, lobby,
+environment, collectibles, and UI as one consistent visual system.
 
-## Asset set
+## Tools and workflow
 
-1. **Hero / variant:** Sprout Scout is the farmer hero. The hero is reused in
-   the home screen and lobby so the character has a clear identity before play.
-   The blue-apron variant adds a watering-can pose for the required outfit/pose
-   variation. Both are exported as transparent PNGs for Photopea compositing.
-2. **Gameplay / lobby:** The gameplay composition shows the hero, farm world,
-   inventory panel, and UI hierarchy. The live lobby screen then places the hero
-   and mission card in the order a mobile game needs.
-3. **Background / environment:** SunSprout Valley uses rolling hills, crop
-   plots, clouds, and small farm houses to establish the farming world.
-4. **Collectibles:** Carrot, tomato, hammer, and watering can form a related
-   harvest/tool set and are used by the gameplay loop.
+I used Python with Pillow to create and export the illustrated PNG assets,
+Photopea to assemble the layered submission file, and HTML/CSS/JavaScript to
+prototype the playable mobile game. The asset workflow was:
 
-## Workflow
+1. Define the palette and visual rules: leafy greens, sky blue, crop yellow,
+   tomato red, watering-can blue, warm brown, and pink accent colour.
+2. Create the hero and alternate blue-apron/watering-can variant.
+3. Build the farm-world background with clouds, hills, farmhouses, crop plots,
+   and trees.
+4. Create a related collectible set: carrot, tomato, hammer, and watering can.
+5. Compose the gameplay/lobby screen with the hero, inventory panel, mission
+   card, and farm environment.
+6. Export individual PNGs, including transparent hero and collectible assets,
+   then integrate them into the touch-friendly game prototype.
 
-The illustrations were built as simple vector-style compositions, exported to
-PNG, and integrated into a touch-friendly HTML5 canvas prototype. The
-interactive pass adds a home screen, lobby, timed round, movement controls,
-collectible pickup, score feedback, and hay-cart hazards. The same palette,
-rounded forms, and soft shadow treatment are used across every surface.
+I maintained consistency by reusing the same rounded silhouettes, thick
+outlines, soft shadows, limited palette, and simplified proportions across all
+assets. The hero is shown on the home screen and lobby, while the same crops and
+tools appear both in the asset pack and in the gameplay loop.
 
-## Cleanup / before and after
+## Initial-to-final hero comparison and Photopea edits
 
-The hero source render initially had a pale-blue rectangular presentation
-background. The cleanup pass removed that background, preserved the character
-silhouette, and exported a transparent `assets/hero-transparent.png` for the
-home screen and lobby. The comparison is included in `hero-before-after.png`.
-The presentation sheet is `presentation-sheet.png`.
+The initial hero render had a pale-blue rectangular background and was not ready
+for compositing. In Photopea, I imported the hero PNG, removed the background
+to preserve the character silhouette, placed the result on transparency,
+applied a small brightness/contrast and saturation correction, and added a
+subtle soft drop shadow. I also organized the PSD into named groups:
+`01 HERO`, `02 GAMEPLAY LOBBY`, `03 FARM BACKGROUND`, `04 COLLECTIBLES`, and
+`05 HERO BEFORE AFTER`. The cleaned result is
+`assets/hero-transparent.png`; the comparison is shown in
+`hero-before-after.png`; the editable file is `Harvest-Rush-Layered.psd`.
 
-The layered asset file was prepared in Photopea, a Photoshop-compatible browser
-editor. The hero was cleaned by removing the pale background, preserving the
-character silhouette, applying colour adjustments, and adding a soft shadow.
-The document was organized into named groups for the hero, gameplay lobby,
-farm background, collectibles, and the before/after comparison, then saved as
-`Harvest-Rush-Layered.psd`.
+## Improvements
 
-## What I would improve
-
-For production, I would add sprite animation, sound, haptics, multiple farm
-levels, touch swipe movement, a proper save system, and a native Android build.
+For a production release, I would add sprite animation, sound effects,
+haptics, swipe movement, multiple farm levels, saved progress, accessibility
+options, and a native Android build. I would also expand the hero variants and
+test the asset readability on a wider range of phone screen sizes.
